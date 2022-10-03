@@ -11,13 +11,19 @@ class ReminderViewController: UICollectionViewController {
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Row>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Row>
     
-    var reminder: Reminder
+    var reminder: Reminder {
+        didSet {
+            onChange(reminder)
+        }
+    }
     private var dataSource: DataSource!
     var workingReminder: Reminder
+    var onChange: (Reminder)->Void
     
-    init(reminder: Reminder) {
+    init(reminder: Reminder, onChange: @escaping (Reminder)->Void) {
         self.reminder = reminder
         self.workingReminder = reminder
+        self.onChange = onChange
         var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         listConfiguration.showsSeparators = false
         listConfiguration.headerMode = .firstItemInSection
@@ -111,8 +117,8 @@ class ReminderViewController: UICollectionViewController {
     }
     
     @objc func didCancelEdit() {
-          workingReminder = reminder
-          setEditing(false, animated: true)
-      }
+        workingReminder = reminder
+        setEditing(false, animated: true)
+    }
 }
 
