@@ -58,6 +58,10 @@ class ReminderListViewController: UICollectionViewController {
         return false
     }
     
+    func add(_ reminder: Reminder) {
+            reminders.append(reminder)
+        }
+    
     
 }
 
