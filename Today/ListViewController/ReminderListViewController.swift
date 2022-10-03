@@ -15,6 +15,9 @@ class ReminderListViewController: UICollectionViewController {
     var filteredReminders: [Reminder] {
         return reminders.filter { listStyle.shouldInclude(date: $0.dueDate) }.sorted { $0.dueDate < $1.dueDate }
     }
+    let listStyleSegmentedControl = UISegmentedControl(items: [
+           ReminderListStyle.today.name, ReminderListStyle.future.name, ReminderListStyle.all.name
+       ])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +35,9 @@ class ReminderListViewController: UICollectionViewController {
         addButton.accessibilityLabel = NSLocalizedString("Add reminder", comment: "Add button accessibility label")
         navigationItem.rightBarButtonItem = addButton
         
-        
+        listStyleSegmentedControl.selectedSegmentIndex = listStyle.rawValue
+        navigationItem.titleView = listStyleSegmentedControl
+
         updateSnapshot()
         
         collectionView.dataSource = dataSource
