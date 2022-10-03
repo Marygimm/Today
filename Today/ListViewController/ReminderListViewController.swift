@@ -36,6 +36,7 @@ class ReminderListViewController: UICollectionViewController {
         navigationItem.rightBarButtonItem = addButton
         
         listStyleSegmentedControl.selectedSegmentIndex = listStyle.rawValue
+        listStyleSegmentedControl.addTarget(self, action: #selector(didChangeListStyle(_:)), for: .valueChanged)
         navigationItem.titleView = listStyleSegmentedControl
 
         updateSnapshot()
@@ -49,6 +50,7 @@ class ReminderListViewController: UICollectionViewController {
         listConfiguration.showsSeparators = false
         listConfiguration.backgroundColor = .clear
         listConfiguration.trailingSwipeActionsConfigurationProvider = makeSwipeActions
+    
         return UICollectionViewCompositionalLayout.list(using: listConfiguration)
     }
     
