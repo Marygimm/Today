@@ -35,6 +35,7 @@ class ReminderViewController: UICollectionViewController {
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
         }
         navigationItem.title = NSLocalizedString("Reminder", comment: "Reminder view controller title")
+        navigationItem.rightBarButtonItem = editButtonItem
         updateSnapshotForViewing()
         
     }
@@ -63,6 +64,15 @@ class ReminderViewController: UICollectionViewController {
         case .viewTitle: return reminder.title
         }
     }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+          super.setEditing(editing, animated: animated)
+          if editing {
+              updateSnapshotForEditing()
+          } else {
+              updateSnapshotForViewing()
+          }
+      }
     
     private func updateSnapshotForEditing() {
         var snapshot = Snapshot()
