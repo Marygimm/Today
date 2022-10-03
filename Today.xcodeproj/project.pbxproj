@@ -16,6 +16,7 @@
 		5786D11F28EB36B700EF2641 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786D11E28EB36B700EF2641 /* Reminder.swift */; };
 		5786D12128EB3BE000EF2641 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786D12028EB3BE000EF2641 /* Date+Today.swift */; };
 		5786D12428EB3CC300EF2641 /* Controller+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786D12328EB3CC300EF2641 /* Controller+DataSource.swift */; };
+		5786D12628EB3DBF00EF2641 /* UIColor+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786D12528EB3DBF00EF2641 /* UIColor+Today.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		5786D11E28EB36B700EF2641 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		5786D12028EB3BE000EF2641 /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
 		5786D12328EB3CC300EF2641 /* Controller+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Controller+DataSource.swift"; sourceTree = "<group>"; };
+		5786D12528EB3DBF00EF2641 /* UIColor+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Today.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				5786D11E28EB36B700EF2641 /* Reminder.swift */,
 				5786D12028EB3BE000EF2641 /* Date+Today.swift */,
+				5786D12528EB3DBF00EF2641 /* UIColor+Today.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5786D12628EB3DBF00EF2641 /* UIColor+Today.swift in Sources */,
 				5786D12428EB3CC300EF2641 /* Controller+DataSource.swift in Sources */,
 				5786D10E28EB35D400EF2641 /* ReminderListViewController.swift in Sources */,
 				5786D12128EB3BE000EF2641 /* Date+Today.swift in Sources */,
