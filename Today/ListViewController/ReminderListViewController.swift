@@ -21,7 +21,7 @@ class ReminderListViewController: UICollectionViewController {
     
     var headerView: ProgressHeaderView?
     
-    private var reminderStore: ReminderStore { ReminderStore.shared }
+    var reminderStore: ReminderStore { ReminderStore.shared }
     
     var progress: CGFloat {
         let chunkSize = 1.0 / CGFloat(filteredReminders.count)
@@ -92,20 +92,21 @@ class ReminderListViewController: UICollectionViewController {
     }
     
     func prepareReminderStore() {
-           Task {
-               do {
-                   try await reminderStore.requestAccess()
-                   reminders = try await reminderStore.readAll()
-               } catch TodayError.accessDenied, TodayError.accessRestricted {
-                   #if DEBUG
-                   reminders = Reminder.sampleData
-                   #endif
-               } catch {
-                   showError(error)
-               }
-               updateSnapshot()
-           }
-       }
+        Task {
+            do {
+                try await reminderStore.requestAccess()
+                reminders = try await reminderStore.readAll()
+                NotificationCenter.default.addObserver(self, selector: #selector(eventStoreChanged(_:)), name: .EKEventStoreChanged, object: nil)
+            } catch TodayError.accessDenied, TodayError.accessRestricted {
+#if DEBUG
+                reminders = Reminder.sampleData
+#endif
+            } catch {
+                showError(error)
+            }
+            updateSnapshot()
+        }
+    }
     
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         let id = filteredReminders[indexPath.item].id
