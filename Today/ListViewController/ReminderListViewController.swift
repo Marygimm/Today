@@ -121,15 +121,6 @@ class ReminderListViewController: UICollectionViewController {
         progressView.progress = progress
     }
     
-    func add(_ reminder: Reminder) {
-        reminders.append(reminder)
-    }
-    
-    func deleteReminder(with id: Reminder.ID) {
-        let index = reminders.indexOfReminder(with: id)
-        reminders.remove(at: index)
-    }
-    
     private func makeSwipeActions(for indexPath: IndexPath?) -> UISwipeActionsConfiguration? {
         guard let indexPath = indexPath, let id = dataSource.itemIdentifier(for: indexPath) else { return nil }
         let deleteActionTitle = NSLocalizedString("Delete", comment: "Delete action title")

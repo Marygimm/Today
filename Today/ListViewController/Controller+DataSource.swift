@@ -12,18 +12,36 @@ extension ReminderListViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<Int, String>
     
     var reminderCompletedValue: String {
-         NSLocalizedString("Completed", comment: "Reminder completed value")
-     }
-     var reminderNotCompletedValue: String {
-         NSLocalizedString("Not completed", comment: "Reminder not completed value")
-     }
+        NSLocalizedString("Completed", comment: "Reminder completed value")
+    }
+    var reminderNotCompletedValue: String {
+        NSLocalizedString("Not completed", comment: "Reminder not completed value")
+    }
     
     func reminderStoreChanged() {
-           Task {
-               reminders = try await reminderStore.readAll()
-               updateSnapshot()
-           }
-       }
+        Task {
+            reminders = try await reminderStore.readAll()
+            updateSnapshot()
+        }
+    }
+    
+    
+    func add(_ reminder: Reminder) {
+        var reminder = reminder
+        do {
+            let idFromStore = try reminderStore.save(reminder)
+            reminder.id = idFromStore
+            reminders.append(reminder)
+        } catch TodayError.accessDenied {
+        } catch {
+            showError(error)
+        }
+    }
+    
+    func deleteReminder(with id: Reminder.ID) {
+        let index = reminders.indexOfReminder(with: id)
+        reminders.remove(at: index)
+    }
     
     func updateSnapshot(reloading idsThatChanged: [Reminder.ID] = []) {
         let ids = idsThatChanged.filter { id in filteredReminders.contains(where: { $0.id == id }) }
@@ -49,7 +67,7 @@ extension ReminderListViewController {
         doneButtonConfiguration.tintColor = .todayListCellDoneButtonTint
         cell.accessibilityValue = reminder.isComplete ? reminderCompletedValue : reminderNotCompletedValue
         cell.accessories = [ .customView(configuration: doneButtonConfiguration), .disclosureIndicator(displayed: .always) ]
-    
+        
         
         
         var backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
@@ -66,13 +84,13 @@ extension ReminderListViewController {
     }
     
     private func doneButtonAccessibilityAction(for reminder: Reminder) -> UIAccessibilityCustomAction {
-         let name = NSLocalizedString("Toggle completion", comment: "Reminder done button accessibility label")
-         let action = UIAccessibilityCustomAction(name: name) { [weak self] action in
-             self?.completeReminder(with: reminder.id)
-             return true
-         }
-         return action
-     }
+        let name = NSLocalizedString("Toggle completion", comment: "Reminder done button accessibility label")
+        let action = UIAccessibilityCustomAction(name: name) { [weak self] action in
+            self?.completeReminder(with: reminder.id)
+            return true
+        }
+        return action
+    }
     
     private func doneButtonConfiguration(for reminder: Reminder) -> UICellAccessory.CustomViewConfiguration {
         let symbolName = reminder.isComplete ? "circle.fill" : "circle"
