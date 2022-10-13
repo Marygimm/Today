@@ -13,6 +13,7 @@
 		57061B2028F47C4F00F87227 /* EKEventStore+AsyncFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57061B1F28F47C4F00F87227 /* EKEventStore+AsyncFetch.swift */; };
 		57061B2228F47CDB00F87227 /* Reminder+EKReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57061B2128F47CDB00F87227 /* Reminder+EKReminder.swift */; };
 		57061B2428F82C2D00F87227 /* ReminderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57061B2328F82C2D00F87227 /* ReminderStore.swift */; };
+		57061B2628F85D3400F87227 /* EKReminder+Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57061B2528F85D3400F87227 /* EKReminder+Reminder.swift */; };
 		5786D10A28EB35D400EF2641 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786D10928EB35D400EF2641 /* AppDelegate.swift */; };
 		5786D10C28EB35D400EF2641 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786D10B28EB35D400EF2641 /* SceneDelegate.swift */; };
 		5786D10E28EB35D400EF2641 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786D10D28EB35D400EF2641 /* ReminderListViewController.swift */; };
@@ -44,6 +45,7 @@
 		57061B1F28F47C4F00F87227 /* EKEventStore+AsyncFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventStore+AsyncFetch.swift"; sourceTree = "<group>"; };
 		57061B2128F47CDB00F87227 /* Reminder+EKReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder+EKReminder.swift"; sourceTree = "<group>"; };
 		57061B2328F82C2D00F87227 /* ReminderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderStore.swift; sourceTree = "<group>"; };
+		57061B2528F85D3400F87227 /* EKReminder+Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKReminder+Reminder.swift"; sourceTree = "<group>"; };
 		5786D10628EB35D400EF2641 /* Today.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Today.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5786D10928EB35D400EF2641 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5786D10B28EB35D400EF2641 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				57061B1F28F47C4F00F87227 /* EKEventStore+AsyncFetch.swift */,
 				57061B2128F47CDB00F87227 /* Reminder+EKReminder.swift */,
 				57061B2328F82C2D00F87227 /* ReminderStore.swift */,
+				57061B2528F85D3400F87227 /* EKReminder+Reminder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				57061B1C28F47AE700F87227 /* CAGradientLayer+ListStyle.swift in Sources */,
 				5786D13728EB850800EF2641 /* UIView+PinnedSubview.swift in Sources */,
 				57061B2428F82C2D00F87227 /* ReminderStore.swift in Sources */,
+				57061B2628F85D3400F87227 /* EKReminder+Reminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
