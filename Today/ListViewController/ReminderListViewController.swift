@@ -10,7 +10,7 @@ import UIKit
 class ReminderListViewController: UICollectionViewController {
     
     var dataSource: DataSource!
-    var reminders: [Reminder] = Reminder.sampleData
+    var reminders: [Reminder] = []
     var listStyle: ReminderListStyle = .today
     var filteredReminders: [Reminder] {
         return reminders.filter { listStyle.shouldInclude(date: $0.dueDate) }.sorted { $0.dueDate < $1.dueDate }
@@ -20,6 +20,8 @@ class ReminderListViewController: UICollectionViewController {
     ])
     
     var headerView: ProgressHeaderView?
+    
+    private var reminderStore: ReminderStore { ReminderStore.shared }
     
     var progress: CGFloat {
         let chunkSize = 1.0 / CGFloat(filteredReminders.count)
@@ -67,6 +69,7 @@ class ReminderListViewController: UICollectionViewController {
         
         collectionView.dataSource = dataSource
         
+        prepareReminderStore()
     }
     
     private func listLayout() -> UICollectionViewCompositionalLayout {
@@ -87,6 +90,22 @@ class ReminderListViewController: UICollectionViewController {
         }
         navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    func prepareReminderStore() {
+           Task {
+               do {
+                   try await reminderStore.requestAccess()
+                   reminders = try await reminderStore.readAll()
+               } catch TodayError.accessDenied, TodayError.accessRestricted {
+                   #if DEBUG
+                   reminders = Reminder.sampleData
+                   #endif
+               } catch {
+                   showError(error)
+               }
+               updateSnapshot()
+           }
+       }
     
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         let id = filteredReminders[indexPath.item].id
